@@ -7,6 +7,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
 	"time"
 
@@ -25,7 +26,12 @@ type Post struct {
 func main() {
 	ctx := context.Background()
 
-	pool, err := pgxpool.New(ctx, "postgres://postgres:postgres@localhost:5432/blog")
+	dsn := os.Getenv("DATABASE_URL")
+	if dsn == "" {
+		dsn = "postgres://postgres:postgres@localhost:5432/blog"
+	}
+
+	pool, err := pgxpool.New(ctx, dsn)
 	if err != nil {
 		log.Fatalf("не подключился: %v", err)
 	}
