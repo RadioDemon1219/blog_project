@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Новый пост</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+</head>
+<body>
+<main class="container">
+    <h1>Новый пост</h1>
+    <form method="post" action="/new">
+        <label><input type="checkbox" name="draft"> Черновик</label>
+        <label>Заголовок
+            <input type="text" name="title" required>
+        </label>
+        <label>Текст
+            <textarea name="body" rows="10"></textarea>
+        </label>
+        <button type="submit">Опубликовать</button>
+        <a href="/" role="button" class="secondary">Отмена</a>
+    </form>
+</main>
+</body>
+</html>

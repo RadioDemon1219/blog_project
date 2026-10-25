@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Мой блог</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <style>
+        article.draft {
+            background-color: rgba(255, 193, 7, 0.15);
+            border-left: 4px solid #ffc107;
+        }
+        .badge {
+            display: inline-block;
+            margin-left: 0.5rem;
+            padding: 0.1rem 0.5rem;
+            border-radius: 999px;
+            background: #ffc107;
+            color: #000;
+            font-size: 0.7rem;
+        }
+    </style>
+</head>
+<body>
+<main class="container">
+    <h1>Мой блог</h1>
+    <p><a href="/new" role="button">+ Новый пост</a></p>
+
+    {{if .}}
+    {{range .}}
+    <article class="{{if eq .Status "draft"}}draft{{else}}published{{end}}">
+    <h2>{{.Title}}</h2>
+    <p>{{.Body}}</p>
+    <small>
+        {{.CreatedAt.Format "02.01.2006 15:04"}}
+        {{if eq .Status "draft"}}<span class="badge">черновик</span>{{end}}
+    </small>
+    </article>
+    {{end}}
+    {{else}}
+    <p>Постов пока нет.</p>
+    {{end}}
+</main>
+</body>
+</html>
